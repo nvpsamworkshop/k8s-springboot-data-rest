@@ -261,7 +261,7 @@ Open a terminal window and use SSH to login to the Linux VM (Bastion Host) which
     See below.  Substitute correct values between the place holders denoted by `<<VALUE>>`.  (Do not include the angle brackets).
     ```
     image:
-      repository: <<mtcslabtest.azurecr.io>>/po-service
+      repository: <<nvpsamworkshop.azurecr.io>>/po-service
     ...
     ingress:
       enabled: true

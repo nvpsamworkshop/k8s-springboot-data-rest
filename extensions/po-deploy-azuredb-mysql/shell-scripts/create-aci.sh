@@ -1,7 +1,7 @@
 az container create -g myResourceGroup -n po-service-aci-group \
-   --image mtcslabtest.azurecr.io/po-service:latest \
+   --image nvpsamworkshop.azurecr.io/po-service:latest \
    --cpu 1 --memory 1 \
-   --registry-login-server mtcslabtest.azurecr.io \
+   --registry-login-server nvpsamworkshop.azurecr.io \
    --registry-username mtcslabtest \
    --registry-password "xyz" \
    --secrets username.properties="xyz" password.properties="abc" --secrets-mount-path /etc/vol-secrets \

@@ -9,7 +9,7 @@ properties:
       - /bin/bash
       - -c
       - java -Dspring.datasource.url="jdbc:mysql://hostname:3306/dbname?useSSL=true&requireSSL=true" -jar ./po-rest-service-1.0.jar
-      image: mtcslabtest.azurecr.io/po-service:latest
+      image: nvpsamworkshop.azurecr.io/po-service:latest
       ports:
       - port: 8080
       resources:
@@ -38,7 +38,7 @@ properties:
     secret:
       mysqldb.properties: 'Any base64 encoded value. This value is not used'
   imageRegistryCredentials:
-  - server: mtcslabtest.azurecr.io
+  - server: nvpsamworkshop.azurecr.io
     username: mtcslabtest
     password: 'Substitute value of ACR password'
 tags: {}

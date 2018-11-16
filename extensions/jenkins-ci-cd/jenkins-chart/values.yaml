@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: mtcslabtest.azurecr.io/jenkins-gr
+  repository: nvpsamworkshop.azurecr.io/jenkins-gr
   tag: latest
   pullPolicy: Always
 

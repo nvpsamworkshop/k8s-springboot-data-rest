@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: po-service-svcat
-        image: mtcslabtest.azurecr.io/po-service:latest
+        image: nvpsamworkshop.azurecr.io/po-service:latest
         volumeMounts:
         - name: mysqlse
           mountPath: "/etc/vol-secrets"
