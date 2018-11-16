@@ -44,7 +44,7 @@ steps:
 - task: DockerCompose@0
   displayName: 'Build services'
   inputs:
-    azureSubscription: AzurePass
+    azureSubscription: 'Azure Pass SP'
     azureContainerRegistry: '{"loginServer":"nvpsamworkshop.azurecr.io", "id" : "/subscriptions/ed327231-50c0-490a-89ef-d4e24e3afdd0/resourceGroups/Containerization/providers/Microsoft.ContainerRegistry/registries/nvpsamworkshop"}'
     action: 'Build services'
     additionalImageTags: '$(Build.BuildId)'
@@ -53,7 +53,7 @@ steps:
 - task: DockerCompose@0
   displayName: 'Push services'
   inputs:
-    azureSubscription: AzurePass
+    azureSubscription: 'Azure Pass SP'
     azureContainerRegistry: '{"loginServer":"nvpsamworkshop.azurecr.io", "id" : "/subscriptions/ed327231-50c0-490a-89ef-d4e24e3afdd0/resourceGroups/Containerization/providers/Microsoft.ContainerRegistry/registries/nvpsamworkshop"}'
     action: 'Push services'
     additionalImageTags: '$(Build.BuildId)'
