@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Before running this script, specify correct values for the following 2 variables !!!!
-ACR_RESOURCE_GROUP=ACR-RG-NAME
-ACR_NAME=ACR-NAME
+ACR_RESOURCE_GROUP=Containerization
+ACR_NAME=nvpsamworkshop
 
 # Get the ACR registry resource id
 ACR_ID=$(az acr show --name $ACR_NAME --resource-group $ACR_RESOURCE_GROUP --query "id" --output tsv)
