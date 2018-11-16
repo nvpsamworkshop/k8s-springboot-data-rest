@@ -6,7 +6,19 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
+variables:
+
+
 steps:
+
+- task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+  displayName: 'Replace tokens in src/main/resources'
+  inputs:
+    sourcePath: src/main/resources
+    filePattern: '*.properties'
+    tokenRegex: '__(\w+[.\w+]*)__'
+
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -17,3 +29,33 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     goals: 'package'
+    options: '-DskipITs'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
+     **/*.jar
+     **/*.yaml
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  - task: DockerCompose@0
+  displayName: 'Build services'
+  inputs:
+    azureSubscription: AzurePass
+    azureContainerRegistry: '{"loginServer":"nvpsamworkshop.azurecr.io", "id" : "/subscriptions/ed327231-50c0-490a-89ef-d4e24e3afdd0/resourceGroups/Containerization/providers/Microsoft.ContainerRegistry/registries/nvpsamworkshop"}'
+    action: 'Build services'
+    additionalImageTags: '$(Build.BuildId)'
+    includeLatestTag: true
+
+- task: DockerCompose@0
+  displayName: 'Push services'
+  inputs:
+    azureSubscription: AzurePass
+    azureContainerRegistry: '{"loginServer":"nvpsamworkshop.azurecr.io", "id" : "/subscriptions/ed327231-50c0-490a-89ef-d4e24e3afdd0/resourceGroups/Containerization/providers/Microsoft.ContainerRegistry/registries/nvpsamworkshop"}'
+    action: 'Push services'
+    additionalImageTags: '$(Build.BuildId)'
+    includeLatestTag: true
