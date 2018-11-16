@@ -6,9 +6,6 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
-variables:
-
-
 steps:
 
 - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
